@@ -36,7 +36,7 @@ public class StudentController {
 		return studentDao.findAll();
 	}
 	
-	@GetMapping("/studentid/{studentId}")
+	@GetMapping("/findstudent/{studentId}")
 	@ResponseBody
 	public Optional<Student> getStudentById(@PathVariable("studentId")int studentId){
 		return studentDao.findById(studentId);
@@ -53,10 +53,6 @@ public class StudentController {
 		studentDao.deleteById(studentId);
 	}
 	
-	@DeleteMapping("/exterminate")
-	public void deleteAllStudents() {
-		studentDao.deleteAll();
-	}
 	
 	@PutMapping("/updatestudent/{studentId}")
 	public Student updateStudent(@PathVariable("studentId")int studentId,
