@@ -2,10 +2,13 @@ package com.johnjohn21121.EducationCenter.Controller;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Supplier;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -56,15 +59,14 @@ public class StudentController {
 	}
 	
 	@PutMapping("/updatestudent/{studentId}")
-	public Student updateStudent(@PathVariable("studentId")int studentId, @RequestBody Student student){
-		if(studentId==studentDao.findById(studentId).get().getStudentId()) {
-			studentDao.save(student);
-		}else {
-			return null;
-		}
+	public Student updateStudent(@PathVariable("studentId")int studentId,
+			@Validated @RequestBody Student student){
 		
-		return student;
+		Student st = studentDao.findById(studentId).orElse(null);
+		st.setStudentName(student.getStudentName());
+		st.setStudentLastName(student.getStudentLastName());
+		Student updatedStudent = studentDao.save(st);
+		
+		return updatedStudent;
 	}
-	
-	
 }

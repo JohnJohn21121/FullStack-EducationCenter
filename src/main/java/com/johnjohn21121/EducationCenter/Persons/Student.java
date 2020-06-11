@@ -17,8 +17,6 @@ public class Student {
 
     }
     
-    
-
     public Student(String studentName, String studentLastName) {
 		this.studentName = studentName;
 		this.studentLastName = studentLastName;
