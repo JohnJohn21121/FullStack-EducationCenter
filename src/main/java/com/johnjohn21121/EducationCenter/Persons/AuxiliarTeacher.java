@@ -4,39 +4,23 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class TitularTeacher  {
-	
+public class AuxiliarTeacher {
+
 	@Id
-	private int teacherId;
-	private String speciality;
+    private int teacherId;
     private String teacherName;
     private String teacherLastName;
+    private int coachingHours;
 
-    public TitularTeacher() {
+
+    public AuxiliarTeacher() {
     }
-    
-    
 
-    public TitularTeacher(String teacherName, String teacherLastName) {
-		this.teacherName = teacherName;
-		this.teacherLastName = teacherLastName;
-	}
-
-
-
-	public TitularTeacher(int teacherId, String teacherName, String teacherLastName, String speciality) {
-        this.speciality = speciality;
+    public AuxiliarTeacher(int teacherId, String teacherName, String teacherLastName, int coachingHours) {
         this.teacherId = teacherId;
         this.teacherName = teacherName;
         this.teacherLastName = teacherLastName;
-    }
-
-    public String getSpeciality() {
-        return speciality;
-    }
-
-    public void setSpeciality(String speciality) {
-        this.speciality = speciality;
+        this.coachingHours = coachingHours;
     }
 
     public int getTeacherId() {
@@ -61,6 +45,14 @@ public class TitularTeacher  {
 
     public void setTeacherLastName(String teacherLastName) {
         this.teacherLastName = teacherLastName;
+    }
+
+    public int getCoachingHours() {
+        return coachingHours;
+    }
+
+    public void setCoachingHours(int coachingHours) {
+        this.coachingHours = coachingHours;
     }
 
 }
