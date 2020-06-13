@@ -1,18 +1,37 @@
 package com.johnjohn21121.EducationCenter.Persons;
 
+import java.sql.Date;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
+
 import javax.persistence.Id;
+import javax.persistence.PrePersist;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.hibernate.annotations.CreationTimestamp;
+
 
 @Entity
 public class Student {
 	
 	@Id
     private int studentId;
-    private String studentName;
+    
+	@Column(name = "name")
+	private String studentName;
+    
+    @Column(name="last_name")
     private String studentLastName;
-
+    
+    @CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "enrollmentDate")
+    private Date enrollmentDate;
+    
+ 
+    
     public Student() {
 
     }
@@ -53,4 +72,10 @@ public class Student {
     public void setStudentLastName(String studentLastName) {
         this.studentLastName = studentLastName;
     }
+    @PrePersist
+	public void setEnrollmentDate(Date enrollmentDate) {
+		this.enrollmentDate = enrollmentDate;
+	}
+    
+    
 }
