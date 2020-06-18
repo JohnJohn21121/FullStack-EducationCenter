@@ -18,6 +18,8 @@ import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.johnjohn21121.EducationCenter.Institute.CourseRegistration;
 import com.johnjohn21121.EducationCenter.Institute.Courses;
 
@@ -50,6 +52,7 @@ public class Student {
     private String studentLastName;
     
     @OneToMany(mappedBy = "student")
+    @JsonIgnoreProperties("student")
     Set<CourseRegistration> registration;
         
     public Student() {

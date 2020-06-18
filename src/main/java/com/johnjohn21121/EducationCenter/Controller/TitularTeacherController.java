@@ -50,7 +50,7 @@ public class TitularTeacherController {
 		titularDao.deleteById(titularTeacherId);
 	}
 	
-	@PutMapping("/updateteacher/{titularTeacherId}")
+	@PutMapping("/titularteacher/{titularTeacherId}")
 	public TitularTeacher updateTitularTeacher(@PathVariable("titularTeacherId")int titularTeacherId,
 						@Validated @RequestBody TitularTeacher titular) {
 		TitularTeacher t1 = titularDao.findById(titularTeacherId).orElse(null);
@@ -61,7 +61,7 @@ public class TitularTeacherController {
 		
 	}
 	
-	@PutMapping("/updateSpeciality/{titularTeacherId}")
+	@PutMapping("/teacherspec/{titularTeacherId}")
 	public TitularTeacher updateSpeciality(@PathVariable("titularTeacherId")int titularTeacherId,
 						@Validated @RequestBody TitularTeacher titular) {
 		TitularTeacher t1 = titularDao.findById(titularTeacherId).orElse(null);

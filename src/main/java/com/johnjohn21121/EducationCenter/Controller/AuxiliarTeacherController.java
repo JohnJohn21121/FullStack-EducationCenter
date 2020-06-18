@@ -42,12 +42,12 @@ public class AuxiliarTeacherController {
 		return auxiliarTeacher;
 	}
 	
-	@DeleteMapping("/deleteteacher/{teacherId}")
+	@DeleteMapping("/auxiliarteacher/{teacherId}")
 	public void removeTeacherById(@PathVariable("teacherId")int teacherId) {
 		auxiliarDao.deleteById(teacherId);
 	}
 	
-	@PutMapping("/updateteacher/{teacherId}")
+	@PutMapping("/auxiliarteacher/{teacherId}")
 	public AuxiliarTeacher updateTeacherById(@PathVariable("teacherId")int teacherId,
 			@RequestBody AuxiliarTeacher auxiliarTeacher) {
 		AuxiliarTeacher aux1 = auxiliarDao.findById(teacherId).orElse(null);
@@ -57,7 +57,7 @@ public class AuxiliarTeacherController {
 		return updatedTeacher;
 	}
 	
-	@PutMapping("/updatecoachinghours/{teacherId}")
+	@PutMapping("/auxiliarteachercoach/{teacherId}")
 	public AuxiliarTeacher updateCoachingHours(@PathVariable("teacherId")int teacherId,
 				@RequestBody AuxiliarTeacher auxiliarTeacher) {
 		AuxiliarTeacher aux1 = auxiliarDao.findById(teacherId).orElse(null);
