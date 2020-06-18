@@ -1,6 +1,6 @@
 package com.johnjohn21121.EducationCenter.Persons;
 
-<<<<<<< HEAD
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -18,9 +18,11 @@ import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.johnjohn21121.EducationCenter.Institute.CourseRegistration;
 import com.johnjohn21121.EducationCenter.Institute.Courses;
-=======
+
 import java.sql.Date;
 
 import javax.persistence.Column;
@@ -33,7 +35,7 @@ import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.CreationTimestamp;
 
->>>>>>> 26a862241b36c2b80545ae8e2fe79685b2b73090
+
 
 @Entity
 @Table(name = "student")
@@ -49,19 +51,10 @@ public class Student {
     @Column(name="last_name")
     private String studentLastName;
     
-<<<<<<< HEAD
     @OneToMany(mappedBy = "student")
+    @JsonIgnoreProperties("student")
     Set<CourseRegistration> registration;
-    
-=======
-    @CreationTimestamp
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "enrollmentDate")
-    private Date enrollmentDate;
-    
- 
->>>>>>> 26a862241b36c2b80545ae8e2fe79685b2b73090
-    
+        
     public Student() {
 
     }
@@ -102,7 +95,7 @@ public class Student {
     public void setStudentLastName(String studentLastName) {
         this.studentLastName = studentLastName;
     }
-<<<<<<< HEAD
+
 
 	public Set<CourseRegistration> getRegistration() {
 		return registration;
@@ -114,12 +107,4 @@ public class Student {
 
 	
    
-=======
-    @PrePersist
-	public void setEnrollmentDate(Date enrollmentDate) {
-		this.enrollmentDate = enrollmentDate;
-	}
-    
->>>>>>> 26a862241b36c2b80545ae8e2fe79685b2b73090
-    
 }

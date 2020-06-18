@@ -20,7 +20,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.johnjohn21121.EducationCenter.Dao.CourseDao;
+import com.johnjohn21121.EducationCenter.Dao.RegistrationDao;
 import com.johnjohn21121.EducationCenter.Dao.StudentDao;
+import com.johnjohn21121.EducationCenter.Institute.CourseRegistration;
+import com.johnjohn21121.EducationCenter.Institute.Courses;
 import com.johnjohn21121.EducationCenter.Persons.Student;
 
 @RestController
@@ -29,6 +33,10 @@ public class StudentController {
 	
 	@Autowired
 	private StudentDao studentDao;
+	@Autowired
+	private RegistrationDao registrationDao;
+	@Autowired
+	private CourseDao courseDao;
 	
 	@GetMapping
 	@ResponseBody
@@ -54,7 +62,7 @@ public class StudentController {
 	}
 	
 	
-	@PutMapping("/updatestudent/{studentId}")
+	@PutMapping("/student/{studentId}")
 	public Student updateStudent(@PathVariable("studentId")int studentId,
 			@Validated @RequestBody Student student){
 		
@@ -65,4 +73,15 @@ public class StudentController {
 		
 		return updatedStudent;
 	}
+	
+	@PostMapping("/student/course/{studentId}")
+	public void enrollStudentInCourse(@PathVariable("studentId") int studentId, @RequestBody Courses c1) {
+		Student st = studentDao.findById(studentId).get();
+		c1 = courseDao.findById(c1.getCourseId()).get();
+		CourseRegistration cr1 = new CourseRegistration();
+		cr1.setStudent(st);
+		cr1.setCourse(c1);
+		registrationDao.save(cr1);
+	}
+	
 }

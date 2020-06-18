@@ -8,6 +8,8 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -18,6 +20,8 @@ import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.johnjohn21121.EducationCenter.Persons.AuxiliarTeacher;
 import com.johnjohn21121.EducationCenter.Persons.Student;
 import com.johnjohn21121.EducationCenter.Persons.TitularTeacher;
@@ -28,12 +32,14 @@ public class Courses {
 	
 	@Id
 	@Column(name = "course_id")
+	@GeneratedValue(strategy = GenerationType.AUTO)
     private int courseId;
     private String courseName;
     private String courseEdition;
     private String courseClassRoom;
     
     @OneToMany(mappedBy = "course")
+    @JsonIgnoreProperties("course")
     Set<CourseRegistration> registrations;
     
     

@@ -4,11 +4,15 @@ import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.johnjohn21121.EducationCenter.Persons.Student;
 
 @Entity
@@ -17,14 +21,17 @@ public class CourseRegistration {
 	
 	@Id
 	@Column(name = "registration_id")
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	int id;
 	
 	@ManyToOne
 	@JoinColumn(name = "student_id")
+	@JsonIgnoreProperties("registrations")
 	Student student;
 	
 	@ManyToOne
 	@JoinColumn(name = "course_id")
+	@JsonIgnoreProperties("registrations")
 	Courses course;
 	
 	LocalDateTime localTime;
@@ -68,8 +75,8 @@ public class CourseRegistration {
 		return localTime;
 	}
 
-	public void setLocalTime(LocalDateTime localTime) {
-		this.localTime = localTime;
+	public void setLocalTime() {
+		this.localTime = localTime.now();
 	}
 	
 }
